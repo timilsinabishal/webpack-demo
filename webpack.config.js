@@ -2,7 +2,6 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin')
 	path = require('path');
 module.exports = {
 	entry: {
-		path: path.join(__dirname, 'src'),
 		bundle:"./src/app.js",
 	}
 	,
@@ -15,6 +14,25 @@ module.exports = {
 		rules: [{
 			test: /\/scss$/,
 			use:['css-loader', 'sass-loader']
+		},
+		// {
+		// 	test: /\.(png|jpe?g)$/,
+		// 	use: {
+		// 		loader: 'url-loader',
+		// 		options: {
+		// 			limit: 1500,
+		// 			name: 'assets/[name].[hash].[ext]',
+		// 	}
+		// 	},
+		// },
+		{
+			test: /\.(png|jpe?g)$/,
+			use:{
+				loader: 'file-loader',
+				options: {
+					name: 'assets/[name].[hash].[ext]',
+			}
+			},
 		},
 		{
 			test: /\.scss$/,
